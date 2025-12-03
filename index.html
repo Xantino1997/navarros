@@ -173,51 +173,18 @@
             color: #ffe066;
         }
 
-        /* Sección con foto y letra */
-        .seccion {
+        /* Sección solo con foto */
+        .seccion-foto {
             min-height: 100vh;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
             padding: 60px 20px;
-            position: relative;
-        }
-
-        /* Letra de la canción arriba */
-        .letra {
-            max-width: 800px;
-            color: white;
-            text-align: center;
-            padding: 30px 40px;
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(15px);
-            border-radius: 20px;
-            box-shadow: 0 15px 50px rgba(0,0,0,0.4);
-            margin: 0 20px 40px 20px;
-            opacity: 0;
-            animation: aparecer 1.5s ease-in 0.5s forwards, desaparecer 1.5s ease-out 20s forwards;
-        }
-
-        .letra p {
-            font-size: 1.5em;
-            line-height: 2;
-            margin: 0;
-            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
-            font-weight: 600;
-        }
-
-        .letra-destacada {
-            font-size: 1.7em !important;
-            font-weight: bold;
-            color: #ffe066;
-            margin: 20px 0;
-            text-shadow: 3px 3px 8px rgba(0,0,0,0.6);
         }
 
         /* Fotos sin dedicatoria */
         .foto-container {
-            animation: fadeInScale 1s ease;
+            animation: fadeInScale 1.5s ease;
         }
 
         .foto-card {
@@ -233,6 +200,80 @@
             height: 450px;
             object-fit: cover;
             display: block;
+        }
+
+        /* Sección de mensaje romántico */
+        .seccion-mensaje {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 20px;
+            position: relative;
+        }
+
+        .mensaje-romantico {
+            max-width: 850px;
+            color: white;
+            text-align: center;
+            padding: 50px 50px;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+            margin: 0 20px;
+            animation: floatIn 1.5s ease;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .mensaje-romantico h3 {
+            font-size: 2.5em;
+            line-height: 1.5;
+            margin: 0;
+            text-shadow: 3px 3px 8px rgba(0,0,0,0.5);
+            font-weight: 600;
+            color: #ffe066;
+        }
+
+        .mensaje-romantico p {
+            font-size: 1.6em;
+            line-height: 1.8;
+            margin: 30px 0 0 0;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.5);
+            color: #ffffff;
+        }
+
+        /* Corazones flotantes de fondo */
+        .corazon-flotante {
+            position: absolute;
+            font-size: 30px;
+            animation: flotar 15s infinite ease-in-out;
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        .corazon-flotante:nth-child(1) {
+            left: 10%;
+            top: 20%;
+            animation-delay: 0s;
+        }
+
+        .corazon-flotante:nth-child(2) {
+            right: 15%;
+            top: 40%;
+            animation-delay: 3s;
+        }
+
+        .corazon-flotante:nth-child(3) {
+            left: 20%;
+            bottom: 30%;
+            animation-delay: 6s;
+        }
+
+        .corazon-flotante:nth-child(4) {
+            right: 10%;
+            bottom: 20%;
+            animation-delay: 9s;
         }
 
         /* Sección de corazón con fotos */
@@ -389,11 +430,37 @@
         @keyframes fadeInScale {
             from {
                 opacity: 0;
-                transform: scale(0.8);
+                transform: scale(0.9) translateY(30px);
             }
             to {
                 opacity: 1;
-                transform: scale(1);
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        @keyframes floatIn {
+            from {
+                opacity: 0;
+                transform: translateY(50px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes flotar {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            25% {
+                transform: translateY(-20px) rotate(5deg);
+            }
+            50% {
+                transform: translateY(0) rotate(0deg);
+            }
+            75% {
+                transform: translateY(-15px) rotate(-5deg);
             }
         }
 
@@ -403,28 +470,6 @@
             }
             to {
                 transform: translateY(-100%);
-            }
-        }
-
-        @keyframes aparecer {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes desaparecer {
-            from {
-                opacity: 1;
-                transform: translateY(0);
-            }
-            to {
-                opacity: 0;
-                transform: translateY(30px);
             }
         }
 
@@ -490,14 +535,14 @@
             .foto-card img {
                 height: 350px;
             }
-            .letra {
-                padding: 25px 30px;
+            .mensaje-romantico {
+                padding: 35px 30px;
             }
-            .letra p {
+            .mensaje-romantico h3 {
+                font-size: 1.8em;
+            }
+            .mensaje-romantico p {
                 font-size: 1.2em;
-            }
-            .letra-destacada {
-                font-size: 1.4em !important;
             }
             .corazon-container {
                 height: 500px;
@@ -511,6 +556,9 @@
             }
             .mensaje-final p {
                 font-size: 1.3em;
+            }
+            .corazon-flotante {
+                font-size: 20px;
             }
         }
 
@@ -531,6 +579,12 @@
             }
             .frase-amor h2 {
                 font-size: 1.5em;
+            }
+            .mensaje-romantico h3 {
+                font-size: 1.5em;
+            }
+            .mensaje-romantico p {
+                font-size: 1.1em;
             }
             .corazon-container {
                 height: 400px;
@@ -564,14 +618,8 @@
                 </div>
             </div>
 
-            <!-- Sección 1 -->
-            <div class="seccion">
-                <div class="letra">
-                    <p>Vamos a escribirnos una historia<br>
-                    Para ti y para mí<br>
-                    Esas donde escondas en tu boca<br>
-                    Un millón de besos</p>
-                </div>
+            <!-- FOTO 1 -->
+            <div class="seccion-foto">
                 <div class="foto-container">
                     <div class="foto-card">
                         <img src="assets/1 marcelo.jpeg" alt="Momento especial 1">
@@ -579,14 +627,20 @@
                 </div>
             </div>
 
-            <!-- Sección 2 -->
-            <div class="seccion">
-                <div class="letra">
-                    <p>Y vamos amarrándonos las manos<br>
-                    Y así no te vayas, no<br>
-                    Y desalojando los espacios<br>
-                    Y llenarlos con amor</p>
+            <!-- MENSAJE 1 -->
+            <div class="seccion-mensaje">
+                <div class="corazon-flotante">💕</div>
+                <div class="corazon-flotante">💖</div>
+                <div class="corazon-flotante">✨</div>
+                <div class="corazon-flotante">💫</div>
+                <div class="mensaje-romantico">
+                    <h3>El Comienzo de Algo Mágico</h3>
+                    <p>Hace 15 años, nuestros caminos se cruzaron y desde ese momento, supimos que esto era para siempre.</p>
                 </div>
+            </div>
+
+            <!-- FOTO 2 -->
+            <div class="seccion-foto">
                 <div class="foto-container">
                     <div class="foto-card">
                         <img src="assets/2 marcelo.jpeg" alt="Momento especial 2">
@@ -594,12 +648,20 @@
                 </div>
             </div>
 
-            <!-- Sección 3 -->
-            <div class="seccion">
-                <div class="letra">
-                    <p>Vamos acercándonos despacio y sin temor<br>
-                    Vamos a perdernos en tu mar</p>
+            <!-- MENSAJE 2 -->
+            <div class="seccion-mensaje">
+                <div class="corazon-flotante">❤️</div>
+                <div class="corazon-flotante">💝</div>
+                <div class="corazon-flotante">🌟</div>
+                <div class="corazon-flotante">✨</div>
+                <div class="mensaje-romantico">
+                    <h3>Construyendo Sueños Juntos</h3>
+                    <p>Cada día a tu lado es una nueva aventura, un nuevo recuerdo que atesorar por toda la eternidad.</p>
                 </div>
+            </div>
+
+            <!-- FOTO 3 -->
+            <div class="seccion-foto">
                 <div class="foto-container">
                     <div class="foto-card">
                         <img src="assets/3 marcelo.jpeg" alt="Momento especial 3">
@@ -607,14 +669,20 @@
                 </div>
             </div>
 
-            <!-- Sección 4 - Coro -->
-            <div class="seccion">
-                <div class="letra">
-                    <p class="letra-destacada">Serás mi compañía<br>
-                    En este invierno mi calor<br>
-                    Serás mi alegría<br>
-                    En esta guerra mi valor, mi amor</p>
+            <!-- MENSAJE 3 -->
+            <div class="seccion-mensaje">
+                <div class="corazon-flotante">💖</div>
+                <div class="corazon-flotante">💕</div>
+                <div class="corazon-flotante">⭐</div>
+                <div class="corazon-flotante">💫</div>
+                <div class="mensaje-romantico">
+                    <h3>En las Buenas y en las Malas</h3>
+                    <p>Juntos hemos superado cada obstáculo, celebrado cada victoria, y crecido como equipo invencible.</p>
                 </div>
+            </div>
+
+            <!-- FOTO 4 -->
+            <div class="seccion-foto">
                 <div class="foto-container">
                     <div class="foto-card">
                         <img src="assets/4 marcelo.jpeg" alt="Momento especial 4">
@@ -622,14 +690,20 @@
                 </div>
             </div>
 
-            <!-- Sección 5 -->
-            <div class="seccion">
-                <div class="letra">
-                    <p>Vamos a tratar de ser sinceros<br>
-                    Y así no hay ningún error<br>
-                    Dentro de tus dudas y tus miedos<br>
-                    Y dejar fuera el dolor</p>
+            <!-- MENSAJE 4 -->
+            <div class="seccion-mensaje">
+                <div class="corazon-flotante">💝</div>
+                <div class="corazon-flotante">❤️</div>
+                <div class="corazon-flotante">✨</div>
+                <div class="corazon-flotante">🌟</div>
+                <div class="mensaje-romantico">
+                    <h3>El Amor que Crece</h3>
+                    <p>Con cada año que pasa, nuestro amor se hace más fuerte, más profundo, más infinito.</p>
                 </div>
+            </div>
+
+            <!-- FOTO 5 -->
+            <div class="seccion-foto">
                 <div class="foto-container">
                     <div class="foto-card">
                         <img src="assets/5 marcelo.jpeg" alt="Momento especial 5">
@@ -637,14 +711,20 @@
                 </div>
             </div>
 
-            <!-- Sección 6 -->
-            <div class="seccion">
-                <div class="letra">
-                    <p>Vamos a grabarnos las miradas<br>
-                    Reforzar la conexión<br>
-                    Que desde el momento de cruzarlas<br>
-                    Despertó la tentación</p>
+            <!-- MENSAJE 5 -->
+            <div class="seccion-mensaje">
+                <div class="corazon-flotante">💕</div>
+                <div class="corazon-flotante">💖</div>
+                <div class="corazon-flotante">💫</div>
+                <div class="corazon-flotante">⭐</div>
+                <div class="mensaje-romantico">
+                    <h3>Momentos Inolvidables</h3>
+                    <p>Cada sonrisa compartida, cada abrazo, cada mirada... son tesoros que guardamos en el corazón.</p>
                 </div>
+            </div>
+
+            <!-- FOTO 6 -->
+            <div class="seccion-foto">
                 <div class="foto-container">
                     <div class="foto-card">
                         <img src="assets/6 marcelo.jpeg" alt="Momento especial 6">
@@ -652,57 +732,36 @@
                 </div>
             </div>
 
-            <!-- Sección 7 - Coro final -->
-            <div class="seccion">
-                <div class="letra">
-                    <p>Vamos acercándonos despacio y sin temor<br>
-                    Vamos a perdernos en tu mar</p>
-                    <p class="letra-destacada" style="margin-top: 30px;">
-                    Serás mi compañía<br>
-                    En este invierno mi calor<br>
-                    Serás mi alegría<br>
-                    En esta guerra mi valor</p>
+            <!-- MENSAJE 6 -->
+            <div class="seccion-mensaje">
+                <div class="corazon-flotante">❤️</div>
+                <div class="corazon-flotante">💝</div>
+                <div class="corazon-flotante">🌟</div>
+                <div class="corazon-flotante">✨</div>
+                <div class="mensaje-romantico">
+                    <h3>Compañeros de Vida</h3>
+                    <p>Confidente, amor, mi todo. Gracias por elegirme cada día.</p>
                 </div>
+            </div>
+
+            <!-- FOTO 7 -->
+            <div class="seccion-foto">
                 <div class="foto-container">
                     <div class="foto-card">
-                        <img src="assets/1 marcelo.jpeg" alt="Momento especial">
+                        <img src="assets/7 marcelo.jpeg" alt="Momento especial 7">
                     </div>
                 </div>
             </div>
 
-            <!-- Sección 8 - Bridge -->
-            <div class="seccion">
-                <div class="letra">
-                    <p class="letra-destacada">
-                    Y serás lo que el destino decidió<br>
-                    Serás<br>
-                    Lo que la magia descubrió<br>
-                    Serás<br>
-                    Aquel deseo que sí que se cumplió</p>
-                </div>
-                <div class="foto-container">
-                    <div class="foto-card">
-                        <img src="assets/2 marcelo.jpeg" alt="Momento especial">
-                    </div>
-                </div>
-            </div>
-
-            <!-- Sección 9 - Coro final repetido -->
-            <div class="seccion">
-                <div class="letra">
-                    <p class="letra-destacada">
-                    Mi compañía<br>
-                    En este invierno mi calor<br>
-                    Serás mi alegría (mía, mía)<br>
-                    En esta guerra mi valor</p>
-                    <p style="font-size: 1.8em; margin-top: 30px; color: #ffe066;">
-                    Oh, mi amor<br>
-                    Mi amor</p>
-                </div>
-                <div class="foto-container">
-                    <div class="foto-card">
-                        <img src="assets/3 marcelo.jpeg" alt="Momento especial">
-                    </div>
+            <!-- MENSAJE 7 -->
+            <div class="seccion-mensaje">
+                <div class="corazon-flotante">💖</div>
+                <div class="corazon-flotante">💕</div>
+                <div class="corazon-flotante">✨</div>
+                <div class="corazon-flotante">💫</div>
+                <div class="mensaje-romantico">
+                    <h3>Nuestro Futuro</h3>
+                    <p>15 años de amor son solo el comienzo. Nos esperan miles de momentos más para seguir escribiendo nuestra historia.</p>
                 </div>
             </div>
 
