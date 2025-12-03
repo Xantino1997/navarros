@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marcelo y Analía - 15 Años de Amor</title>
+    
+    <!-- Meta tags para compartir en redes sociales -->
+    <meta property="og:title" content="Marcelo y Analía - 15 Años de Amor" />
+    <meta property="og:description" content="Mirá cómo es nuestra historia de amor. 15 años juntos, una vida de amor infinito 💕" />
+    <meta property="og:image" content="assets/final.jpeg" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="" />
+    
+    <!-- Meta tags para WhatsApp -->
+    <meta property="og:site_name" content="Nuestra Historia de Amor" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    
+    <!-- Meta tags para Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Marcelo y Analía - 15 Años de Amor" />
+    <meta name="twitter:description" content="Mirá cómo es nuestra historia de amor. 15 años juntos, una vida de amor infinito 💕" />
+    <meta name="twitter:image" content="assets/final.jpeg" />
+    
+    <!-- Descripción general -->
+    <meta name="description" content="Mirá cómo es nuestra historia de amor. Marcelo y Analía celebrando 15 años juntos con amor infinito." />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%);
+            min-height: 100vh;
+        }
+
+        /* Pantalla de inicio */
+        #inicio {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            transition: opacity 0.5s ease;
+        }
+
+        #inicio.oculto {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .portada {
+            text-align: center;
+            color: white;
+            padding: 20px;
+            max-width: 90%;
+        }
+
+        .portada h1 {
+            font-size: 3.5em;
+            margin-bottom: 15px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+            animation: fadeInDown 1s ease;
+        }
+
+        .portada h2 {
+            font-size: 2em;
+            margin-bottom: 40px;
+            font-weight: normal;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: fadeInUp 1s ease 0.3s both;
+        }
+
+        .portada-img {
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 8px solid white;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.4);
+            margin: 0 auto 50px;
+            animation: zoomIn 1s ease 0.6s both;
+            display: block;
+        }
+
+        .btn-play {
+            background: white;
+            color: #667eea;
+            border: none;
+            padding: 20px 60px;
+            font-size: 1.5em;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite 1s;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .btn-play:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+        }
+
+        /* Contenedor principal con scroll */
+        #contenido {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            opacity: 0;
+            overflow: hidden;
+        }
+
+        #contenido.visible {
+            opacity: 1;
+        }
+
+        /* Contenedor animado que se mueve */
+        .contenedor-scroll {
+            position: absolute;
+            top: 100vh;
+            left: 0;
+            width: 100%;
+            transition: none;
+        }
+
+        .contenedor-scroll.animando {
+            animation: scrollSuave 236s linear forwards;
+        }
+
+        /* Encabezado inicial con frase */
+        .header-inicial {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        .frase-amor {
+            max-width: 900px;
+            color: white;
+            text-align: center;
+            padding: 60px 40px;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+            border: 3px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .frase-amor h2 {
+            font-size: 3em;
+            line-height: 1.4;
+            text-shadow: 3px 3px 8px rgba(0,0,0,0.5);
+            font-weight: 600;
+            margin: 0;
+            color: #ffe066;
+        }
+
+        /* Sección con foto y letra */
+        .seccion {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 20px;
+            position: relative;
+        }
+
+        /* Letra de la canción arriba */
+        .letra {
+            max-width: 800px;
+            color: white;
+            text-align: center;
+            padding: 30px 40px;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.4);
+            margin: 0 20px 40px 20px;
+            opacity: 0;
+            animation: aparecer 1.5s ease-in 0.5s forwards, desaparecer 1.5s ease-out 20s forwards;
+        }
+
+        .letra p {
+            font-size: 1.5em;
+            line-height: 2;
+            margin: 0;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+            font-weight: 600;
+        }
+
+        .letra-destacada {
+            font-size: 1.7em !important;
+            font-weight: bold;
+            color: #ffe066;
+            margin: 20px 0;
+            text-shadow: 3px 3px 8px rgba(0,0,0,0.6);
+        }
+
+        /* Fotos sin dedicatoria */
+        .foto-container {
+            animation: fadeInScale 1s ease;
+        }
+
+        .foto-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            max-width: 600px;
+        }
+
+        .foto-card img {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Sección de corazón con fotos */
+        .seccion-corazon {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 20px;
+            position: relative;
+        }
+
+        .corazon-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            height: 700px;
+            margin-bottom: 40px;
+        }
+
+        .foto-corazon {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+            border: 4px solid white;
+            animation: apareceCorazon 2s ease-out forwards;
+            opacity: 0;
+        }
+
+        .foto-corazon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Posiciones del corazón - 7 fotos */
+        .foto-corazon:nth-child(1) { 
+            left: 50%;
+            top: 5%;
+            transform: translateX(-50%);
+            animation-delay: 0.2s;
+        }
+        .foto-corazon:nth-child(2) { 
+            left: 25%;
+            top: 20%;
+            animation-delay: 0.4s;
+        }
+        .foto-corazon:nth-child(3) { 
+            left: 75%;
+            top: 20%;
+            transform: translateX(-100%);
+            animation-delay: 0.6s;
+        }
+        .foto-corazon:nth-child(4) { 
+            left: 15%;
+            top: 45%;
+            animation-delay: 0.8s;
+        }
+        .foto-corazon:nth-child(5) { 
+            left: 85%;
+            top: 45%;
+            transform: translateX(-100%);
+            animation-delay: 1s;
+        }
+        .foto-corazon:nth-child(6) { 
+            left: 30%;
+            top: 70%;
+            animation-delay: 1.2s;
+        }
+        .foto-corazon:nth-child(7) { 
+            left: 70%;
+            top: 70%;
+            transform: translateX(-100%);
+            animation-delay: 1.4s;
+        }
+
+        /* Sección final */
+        .seccion-final {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .mensaje-final {
+            color: white;
+            max-width: 800px;
+        }
+
+        .mensaje-final h2 {
+            font-size: 3.5em;
+            margin-bottom: 30px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.3);
+            color: #ffe066;
+            font-weight: bold;
+        }
+
+        .mensaje-final p {
+            font-size: 1.8em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            line-height: 1.6;
+        }
+
+        /* Animaciones */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes zoomIn {
+            from {
+                opacity: 0;
+                transform: scale(0.5);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.08);
+            }
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes scrollSuave {
+            from {
+                transform: translateY(0);
+            }
+            to {
+                transform: translateY(-100%);
+            }
+        }
+
+        @keyframes aparecer {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes desaparecer {
+            from {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            to {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+        }
+
+        @keyframes apareceCorazon {
+            from {
+                opacity: 0;
+                transform: scale(0) rotate(-180deg);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) rotate(0deg);
+            }
+        }
+
+        /* Controles de música */
+        .controles {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 100;
+        }
+
+        .btn-control {
+            background: white;
+            color: #667eea;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .btn-control:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.4);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .portada h1 {
+                font-size: 2.2em;
+            }
+            .portada h2 {
+                font-size: 1.4em;
+            }
+            .portada-img {
+                width: 250px;
+                height: 250px;
+                margin-bottom: 40px;
+            }
+            .btn-play {
+                padding: 18px 45px;
+                font-size: 1.3em;
+            }
+            .frase-amor {
+                padding: 40px 30px;
+            }
+            .frase-amor h2 {
+                font-size: 1.8em;
+            }
+            .foto-card img {
+                height: 350px;
+            }
+            .letra {
+                padding: 25px 30px;
+            }
+            .letra p {
+                font-size: 1.2em;
+            }
+            .letra-destacada {
+                font-size: 1.4em !important;
+            }
+            .corazon-container {
+                height: 500px;
+            }
+            .foto-corazon {
+                width: 80px;
+                height: 80px;
+            }
+            .mensaje-final h2 {
+                font-size: 2.2em;
+            }
+            .mensaje-final p {
+                font-size: 1.3em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .portada h1 {
+                font-size: 1.8em;
+            }
+            .portada h2 {
+                font-size: 1.2em;
+            }
+            .portada-img {
+                width: 200px;
+                height: 200px;
+            }
+            .btn-play {
+                padding: 15px 35px;
+                font-size: 1.1em;
+            }
+            .frase-amor h2 {
+                font-size: 1.5em;
+            }
+            .corazon-container {
+                height: 400px;
+            }
+            .foto-corazon {
+                width: 65px;
+                height: 65px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Pantalla de inicio -->
+    <div id="inicio">
+        <div class="portada">
+            <h1>Marcelo y Analía</h1>
+            <h2>15 Años de Amor</h2>
+            <img src="assets/final.jpeg" alt="Marcelo y Analía" class="portada-img">
+            <button class="btn-play" onclick="iniciar()">▶ Comenzar</button>
+        </div>
+    </div>
+
+    <!-- Contenido principal -->
+    <div id="contenido">
+        <div class="contenedor-scroll" id="scroll-container">
+            
+            <!-- Encabezado con frase inicial -->
+            <div class="header-inicial">
+                <div class="frase-amor">
+                    <h2>Como venimos, así vamos a seguir...<br>Juntos por siempre, nuestro amor no tiene fin</h2>
+                </div>
+            </div>
+
+            <!-- Sección 1 -->
+            <div class="seccion">
+                <div class="letra">
+                    <p>Vamos a escribirnos una historia<br>
+                    Para ti y para mí<br>
+                    Esas donde escondas en tu boca<br>
+                    Un millón de besos</p>
+                </div>
+                <div class="foto-container">
+                    <div class="foto-card">
+                        <img src="assets/1 marcelo.JPEG" alt="Momento especial 1">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección 2 -->
+            <div class="seccion">
+                <div class="letra">
+                    <p>Y vamos amarrándonos las manos<br>
+                    Y así no te vayas, no<br>
+                    Y desalojando los espacios<br>
+                    Y llenarlos con amor</p>
+                </div>
+                <div class="foto-container">
+                    <div class="foto-card">
+                        <img src="assets/2 marcelo.JPEG" alt="Momento especial 2">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección 3 -->
+            <div class="seccion">
+                <div class="letra">
+                    <p>Vamos acercándonos despacio y sin temor<br>
+                    Vamos a perdernos en tu mar</p>
+                </div>
+                <div class="foto-container">
+                    <div class="foto-card">
+                        <img src="assets/3 marcelo.JPEG" alt="Momento especial 3">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección 4 - Coro -->
+            <div class="seccion">
+                <div class="letra">
+                    <p class="letra-destacada">Serás mi compañía<br>
+                    En este invierno mi calor<br>
+                    Serás mi alegría<br>
+                    En esta guerra mi valor, mi amor</p>
+                </div>
+                <div class="foto-container">
+                    <div class="foto-card">
+                        <img src="assets/4 marcelo.JPEG" alt="Momento especial 4">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección 5 -->
+            <div class="seccion">
+                <div class="letra">
+                    <p>Vamos a tratar de ser sinceros<br>
+                    Y así no hay ningún error<br>
+                    Dentro de tus dudas y tus miedos<br>
+                    Y dejar fuera el dolor</p>
+                </div>
+                <div class="foto-container">
+                    <div class="foto-card">
+                        <img src="assets/5 marcelo.JPEG" alt="Momento especial 5">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección 6 -->
+            <div class="seccion">
+                <div class="letra">
+                    <p>Vamos a grabarnos las miradas<br>
+                    Reforzar la conexión<br>
+                    Que desde el momento de cruzarlas<br>
+                    Despertó la tentación</p>
+                </div>
+                <div class="foto-container">
+                    <div class="foto-card">
+                        <img src="assets/6 marcelo.JPEG" alt="Momento especial 6">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección 7 - Coro final -->
+            <div class="seccion">
+                <div class="letra">
+                    <p>Vamos acercándonos despacio y sin temor<br>
+                    Vamos a perdernos en tu mar</p>
+                    <p class="letra-destacada" style="margin-top: 30px;">
+                    Serás mi compañía<br>
+                    En este invierno mi calor<br>
+                    Serás mi alegría<br>
+                    En esta guerra mi valor</p>
+                </div>
+                <div class="foto-container">
+                    <div class="foto-card">
+                        <img src="assets/1 marcelo.JPEG" alt="Momento especial">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección 8 - Bridge -->
+            <div class="seccion">
+                <div class="letra">
+                    <p class="letra-destacada">
+                    Y serás lo que el destino decidió<br>
+                    Serás<br>
+                    Lo que la magia descubrió<br>
+                    Serás<br>
+                    Aquel deseo que sí que se cumplió</p>
+                </div>
+                <div class="foto-container">
+                    <div class="foto-card">
+                        <img src="assets/2 marcelo.JPEG" alt="Momento especial">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección 9 - Coro final repetido -->
+            <div class="seccion">
+                <div class="letra">
+                    <p class="letra-destacada">
+                    Mi compañía<br>
+                    En este invierno mi calor<br>
+                    Serás mi alegría (mía, mía)<br>
+                    En esta guerra mi valor</p>
+                    <p style="font-size: 1.8em; margin-top: 30px; color: #ffe066;">
+                    Oh, mi amor<br>
+                    Mi amor</p>
+                </div>
+                <div class="foto-container">
+                    <div class="foto-card">
+                        <img src="assets/3 marcelo.JPEG" alt="Momento especial">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección Corazón con todas las fotos -->
+            <div class="seccion-corazon">
+                <div class="corazon-container">
+                    <div class="foto-corazon">
+                        <img src="assets/1 marcelo.JPEG" alt="Foto 1">
+                    </div>
+                    <div class="foto-corazon">
+                        <img src="assets/2 marcelo.JPEG" alt="Foto 2">
+                    </div>
+                    <div class="foto-corazon">
+                        <img src="assets/3 marcelo.JPEG" alt="Foto 3">
+                    </div>
+                    <div class="foto-corazon">
+                        <img src="assets/4 marcelo.JPEG" alt="Foto 4">
+                    </div>
+                    <div class="foto-corazon">
+                        <img src="assets/5 marcelo.JPEG" alt="Foto 5">
+                    </div>
+                    <div class="foto-corazon">
+                        <img src="assets/6 marcelo.JPEG" alt="Foto 6">
+                    </div>
+                    <div class="foto-corazon">
+                        <img src="assets/7 marcelo.JPEG" alt="Foto 7">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sección Final -->
+            <div class="seccion-final">
+                <div class="mensaje-final">
+                    <h2>15 Años de Amor Infinito 💕</h2>
+                    <p>Nuestro amor es la historia más hermosa<br>
+                    que seguiremos escribiendo juntos<br>
+                    por toda la eternidad<br><br>
+                    <strong>Marcelo y Analía</strong><br>
+                    Siempre Unidos 🌟</p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Controles de música -->
+    <div class="controles" style="display: none;" id="controles">
+        <button class="btn-control" onclick="toggleMusica()">⏸ Pausar</button>
+    </div>
+
+    <!-- Audio -->
+    <audio id="musica">
+        <source src="assets/seras.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        const inicio = document.getElementById('inicio');
+        const contenido = document.getElementById('contenido');
+        const scrollContainer = document.getElementById('scroll-container');
+        const musica = document.getElementById('musica');
+        const controles = document.getElementById('controles');
+        const btnControl = document.querySelector('.btn-control');
+        let reproduciendo = false;
+
+        function iniciar() {
+            // Ocultar pantalla de inicio
+            inicio.classList.add('oculto');
+            
+            // Mostrar contenido después de la transición
+            setTimeout(() => {
+                inicio.style.display = 'none';
+                contenido.classList.add('visible');
+                controles.style.display = 'block';
+                
+                // Iniciar animación de scroll
+                scrollContainer.classList.add('animando');
+            }, 500);
+
+            // Iniciar música
+            musica.play().catch(e => console.log('Error al reproducir:', e));
+            reproduciendo = true;
+        }
+
+        function toggleMusica() {
+            if (reproduciendo) {
+                musica.pause();
+                // Pausar animación
+                scrollContainer.style.animationPlayState = 'paused';
+                btnControl.innerHTML = '▶ Reproducir';
+                reproduciendo = false;
+            } else {
+                musica.play().catch(e => console.log('Error al reproducir:', e));
+                // Reanudar animación
+                scrollContainer.style.animationPlayState = 'running';
+                btnControl.innerHTML = '⏸ Pausar';
+                reproduciendo = true;
+            }
+        }
+
+        // Reiniciar cuando termine la canción
+        musica.addEventListener('ended', () => {
+            setTimeout(() => {
+                location.reload();
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
